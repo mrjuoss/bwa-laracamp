@@ -59,6 +59,10 @@ class CampBenefitTableSeeder extends Seeder
             [
                 'camp_id' => 2,
                 'name' => 'Offline Course Videos'
+            ],
+            [
+                'camp_id' => 2,
+                'name' => 'Future Job Opportinity'
             ]
         ];
 
