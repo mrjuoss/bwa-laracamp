@@ -21,14 +21,39 @@
                     <a class="nav-link" href="#">Business</a>
                 </li>
             </ul>
-            <div class="d-flex">
-                <a href="{{route('login')}}" class="btn btn-master btn-secondary me-3">
-                    Sign In
-                </a>
-                <a href="{{route('login')}}" class="btn btn-master btn-primary">
-                    Sign Up
-                </a>
-            </div>
+
+            @auth
+                {{-- sudah login --}}
+                <div class="d-flex user-logged nav-item dropdown no-arrow">
+                    <a href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                        Halo, {{ Auth::user()->name }}!
+                        <img src="{{ Auth::user()->avatar }}" class="user-photo" alt="">
+                    </a>
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink" style="right: 0; left: auto">
+                        <li>
+                            <a href="#" class="dropdown-item">My Dashboard</a>
+                        </li
+                        <li>
+                            <a href="{{route('logout')}}" class="dropdown-item" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Sign Out</a>
+                            <form id="logout-form" method="post" action="{{route('logout')}}" style="display: none">
+                                @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            @else
+                {{-- belum login --}}
+                <div class="d-flex">
+                    <a href="{{route('login')}}" class="btn btn-master btn-secondary me-3">
+                        Sign In
+                    </a>
+                    <a href="{{route('login')}}" class="btn btn-master btn-primary">
+                        Sign Up
+                    </a>
+                </div>
+            @endauth
+           
         </div>
     </div>
 </nav>
